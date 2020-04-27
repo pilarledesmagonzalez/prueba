@@ -11,12 +11,13 @@
 
   <name>Prueba</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+<!--  <url>http://www.example.com</url>-->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <mongodb-driver-sync.version>3.11.0</mongodb-driver-sync.version>
   </properties>
 
   <dependencies>
@@ -30,6 +31,16 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongodb-driver-sync</artifactId>
+      <version>${mongodb-driver-sync.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.4.1</version>
     </dependency>
   </dependencies>
 
@@ -87,19 +98,14 @@
             <url>http://localhost:9999/manager/text</url>
             <server>Tomcat7</server>
             <path>/home</path>
-            <update>true</update>
+<!--            <update>true</update>-->
           </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.tomcat.maven</groupId>
-          <artifactId>tomcat7-maven-plugin</artifactId>
-          <version>2.2</version>
           <executions>
             <execution>
               <id>tomcat-run</id>
-              <goals>
-                <goal>exec-war-only</goal>
-              </goals>
+<!--              <goals>-->
+<!--                <goal>exec-war-only</goal>-->
+<!--              </goals>-->
               <phase>package</phase>
               <configuration>
                 <!-- optional only if you want to use a preconfigured server.xml file -->
@@ -137,9 +143,17 @@
           </executions>
         </plugin>
 
-
-
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
