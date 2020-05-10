@@ -17,13 +17,5 @@ public class App
         System.out.println(prueba.getName());
         connection();
 
-
-
-
-
-
-
-        //asdasdasd
-
     }
 }

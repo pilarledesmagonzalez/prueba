@@ -1,8 +1,6 @@
 package org.pilus.service;
 
-import com.mongodb.DB;
-import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
+import com.mongodb.*;
 import org.pilus.pojos.PruebaPOJO;
 import java.lang.*;
 import java.net.UnknownHostException;
@@ -15,7 +13,11 @@ public class ServicePrueba {
 
         MongoClient mongoClient = new MongoClient();
         DB database = mongoClient.getDB("test");
-        System.out.println(database.getName().toString());
+        DBCollection collection = database.getCollection("listingsAndReviews");
+        DBObject query = new BasicDBObject("_id", "10006546");
+        DBCursor cursor = collection.find(query);
+        System.out.println(cursor.toString());
+
 
     }
 
