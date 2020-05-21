@@ -1,27 +1,31 @@
 package org.pilus.service;
 
-import com.mongodb.DB;
-import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
+import com.mongodb.client.*;
+import org.bson.Document;
 import org.pilus.pojos.PruebaPOJO;
 import java.lang.*;
-import java.net.UnknownHostException;
-
+import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.eq;
 
 public class ServicePrueba {
 
-
-    public static void connection() throws UnknownHostException {
-
-        MongoClient mongoClient = new MongoClient();
-        DB database = mongoClient.getDB("test");
-        System.out.println(database.getName().toString());
-
+    public static void getByID() {
+        PruebaPOJO review = DBConnection.CollectionSelection().find(eq("_id", "10051164")).first();
+        System.out.println(review);
     }
 
-    public static void getInfo(PruebaPOJO prueba){
-        prueba.setId(0);
-        prueba.setName("nombre cambiado");
+    public static void readDocumentsFromDatabase(MongoCollection collection) {
+        MongoCursor cursor = collection.find().cursor();
+        while (cursor.hasNext()) {
+            System.out.println(cursor.next());
+        }
+    }
+
+    public static void findById(String id, MongoCollection collection)
+    {
+        Document myDoc = (Document) collection.find(eq("_id", id)).first();
+        System.out.println(myDoc.toJson());
+
     }
 
 }
