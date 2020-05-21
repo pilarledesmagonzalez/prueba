@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
@@ -14,7 +15,8 @@ import org.bson.types.ObjectId;
 @NoArgsConstructor
 public class PruebaPOJO {
 
-    private ObjectId id;
+    @BsonProperty(value="_id")@BsonId
+    private String id;
     @BsonProperty(value="name")
     private String name;
     @BsonProperty(value="summary")

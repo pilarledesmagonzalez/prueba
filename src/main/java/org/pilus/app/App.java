@@ -7,7 +7,7 @@ import static org.pilus.service.ServicePrueba.connection;
 
 public class App
 {
-    public static PruebaPOJO prueba = PruebaPOJO.builder().id(1).name("pilus").build();
+    public static PruebaPOJO prueba = PruebaPOJO.builder().name("pilus").build();
 
     public static void main( String[] args ) throws UnknownHostException {
         System.out.println(prueba.getId());
